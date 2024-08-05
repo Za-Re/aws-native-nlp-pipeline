@@ -15,7 +15,7 @@ resource "aws_iam_role" "glue_service_role" {
 
 resource "aws_iam_policy_attachment" "glue_service_role_policy" {
   name       = "glue-service-role-policy"
-  roles       = aws_iam_role.glue_service_role.name
+  roles       = [aws_iam_role.glue_service_role.name]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
@@ -87,7 +87,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 
 resource "aws_iam_policy_attachment" "lambda_basic_execution" {
   name       = "lambda-basic-execution"
-  roles       = aws_iam_role.lambda_execution_role.name
+  roles       = [aws_iam_role.lambda_execution_role.name]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
