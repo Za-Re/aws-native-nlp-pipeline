@@ -4,8 +4,8 @@ resource "aws_iam_role" "glue_service_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole"
-      Effect    = "Allow"
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
       Principal = {
         Service = "glue.amazonaws.com"
       }
@@ -14,13 +14,14 @@ resource "aws_iam_role" "glue_service_role" {
 }
 
 resource "aws_iam_policy_attachment" "glue_service_role_policy" {
-  role       = aws_iam_role.glue_service_role.name
+  name       = "glue-service-role-policy"
+  roles       = aws_iam_role.glue_service_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
 resource "aws_iam_role_policy" "glue_s3_access_policy" {
-  name   = "GlueS3AccessPolicy"
-  role   = aws_iam_role.glue_service_role.id
+  name = "GlueS3AccessPolicy"
+  role = aws_iam_role.glue_service_role.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -42,8 +43,8 @@ resource "aws_iam_role" "comprehend_service_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole"
-      Effect    = "Allow"
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
       Principal = {
         Service = "comprehend.amazonaws.com"
       }
@@ -52,8 +53,8 @@ resource "aws_iam_role" "comprehend_service_role" {
 }
 
 resource "aws_iam_role_policy" "comprehend_s3_access_policy" {
-  name   = "ComprehendS3AccessPolicy"
-  role   = aws_iam_role.comprehend_service_role.id
+  name = "ComprehendS3AccessPolicy"
+  role = aws_iam_role.comprehend_service_role.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -75,8 +76,8 @@ resource "aws_iam_role" "lambda_execution_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole"
-      Effect    = "Allow"
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
       Principal = {
         Service = "lambda.amazonaws.com"
       }
@@ -85,13 +86,14 @@ resource "aws_iam_role" "lambda_execution_role" {
 }
 
 resource "aws_iam_policy_attachment" "lambda_basic_execution" {
-  role       = aws_iam_role.lambda_execution_role.name
+  name       = "lambda-basic-execution"
+  roles       = aws_iam_role.lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_iam_role_policy" "lambda_custom_policy" {
-  name   = "LambdaCustomPolicy"
-  role   = aws_iam_role.lambda_execution_role.id
+  name = "LambdaCustomPolicy"
+  role = aws_iam_role.lambda_execution_role.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -120,8 +122,8 @@ resource "aws_iam_role" "step_functions_service_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole"
-      Effect    = "Allow"
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
       Principal = {
         Service = "states.amazonaws.com"
       }
@@ -130,8 +132,8 @@ resource "aws_iam_role" "step_functions_service_role" {
 }
 
 resource "aws_iam_role_policy" "step_functions_policy" {
-  name   = "StepFunctionsPolicy"
-  role   = aws_iam_role.step_functions_service_role.id
+  name = "StepFunctionsPolicy"
+  role = aws_iam_role.step_functions_service_role.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
