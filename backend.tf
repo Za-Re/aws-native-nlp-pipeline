@@ -1,10 +1,6 @@
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "aws-nlp-pipeline-state-bucket"
 
-  lifecycle {
-    prevent_destroy = true
-  }
-
   tags = {
     Name = "AWS NLP Pipeline Terraform State Bucket"
   }
